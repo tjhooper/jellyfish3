@@ -1,0 +1,6 @@
+package: alarm.datatypes
+
+data: ZonedTime
+  extends: Time
+  fields:
+    TimeZone timeZone

@@ -1,0 +1,12 @@
+package: alarm
+
+import data: 
+  alarm.datatypes.ZonedTime
+
+model: Clock
+
+  inputs:
+    ZonedTime timeToSet
+
+  outputs:
+    ZonedTime currentTime

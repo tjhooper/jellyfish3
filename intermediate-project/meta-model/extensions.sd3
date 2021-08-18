@@ -1,0 +1,47 @@
+# The special "meta-model" directory allows for custom DSL extensions, validators, etc.
+
+# Allow projects to extend the DSL and define their own labels.
+labels:
+  affordability:
+    # Can reference a complex type or a builtin type
+    type: affordability.extensions.Metadata
+    # Apply this label to models only.
+    appliesTo: model
+
+  # This is an example of apply labels to fields in data types.  You might have
+  # min and max values for integers or something
+  max:
+    type: integer
+    appliesTo: data.fields
+  min:
+    type: integer
+    appliesTo: data.fields
+
+  # The robot label has isn't own format and can define it's own parser.
+  # The value is an external command to run.  The command takes JSON as input (stdin)
+  # and produces JSON as output (stdout).  The output informs Jellyfish if the content
+  # is valid.  Users just have to build wrapper scripts around their preferred tools.
+  robot:
+    parser: robot --parse-only
+    appliesTo: model
+
+  # By default, labels without types can have free text and double blank lines terminates the
+  # block.  The termination sequence can be a regex or whatever.
+  robot2:
+    parser: robot --parse-only
+    appliesTo: model
+    terminator: ---+ # 3 or more --- characters terminates the block.
+
+# Say you want to do custom validation.  Same as parsers, JSON in and JSON out
+validators:
+  myValidator: my-validator.exe
+
+# Say you already have data defined in another DSL (ATOMS, protobuf, etc).  Or maybe you
+# already have lots of data types in code.  Allows those data types to be resolved dynamically
+# without having to redeclare them.
+resolvers:
+  data:
+    atomsResolver: java -jar atoms.jar --resolver-mode
+  # Do this with models as well.
+  model:
+    myModelResolver: my-golang-resolver.exe

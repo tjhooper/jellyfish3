@@ -1,0 +1,9 @@
+package: alarm.datatypes
+
+data: TimeZone
+  # data can have either fields (makes it a complex type) or values (makes it an enum)
+  values:
+    EST
+    CST 
+    MST
+    PST

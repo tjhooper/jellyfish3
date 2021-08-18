@@ -1,0 +1,14 @@
+package: alarm
+
+import data: 
+  alarm.datatypes.ZonedTime
+
+model: Alarm
+  inputs:
+    ZonedTime currentTime
+    ZonedTime alarmTime
+    # Allow unspecified types to support incremental modeling
+    alarmAcknowledgement
+
+  outputs:
+    alarmStatus

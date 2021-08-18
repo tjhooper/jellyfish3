@@ -1,0 +1,58 @@
+package customklocks
+
+import model:
+  alarm.AlarmClock
+
+model: AlarmKlock
+  extends AlarmClock
+
+  # See meta-model/extensions.sd3 for more information about custom "labels".
+  # Projects can define their own "labels" for whatever purpose they want.
+  affordability:
+    runsOnK8s: always
+    requiresAdditionalTests: no
+    serviceName: cheap.alarms
+    awsTag: affordability-services
+    # Markdown is an built in data type
+    serviceDescription:
+      This is a **service** that provides _alarms_.  It
+    
+      1. broadcasts the time
+      1. makes annoying noises
+
+      Tables are also supported just like normal markdown.
+
+      | A | B | C |
+      |---|---|---|
+      | 1 | 2 | 3 |
+      | 4 | 5 | 6 |
+      | 7 | 8 | 9 |
+
+      # With headins
+
+      ## And more headings
+      Two blank lines terminate markdown
+
+
+  # Maybe teams would rather use Robot Framework than Gherkin.  They can define a 
+  # "robot" label
+  robot:
+    testCase:
+      *** Settings ***
+      Documentation     A test suite with a single test for valid login.
+      ...
+      ...               This test has a workflow that is created using keywords in
+      ...               the imported resource file.
+      Resource          resource.txt
+
+      *** Test Cases ***
+      Valid Login
+          Open Browser To Login Page
+          Input Username    demo
+          Input Password    mode
+          Submit Credentials
+          Welcome Page Should Be Open
+          [Teardown]    Close Browser
+
+    # Again, support external files
+    file: src/test/robot/my/file.robot                    

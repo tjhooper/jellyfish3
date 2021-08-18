@@ -1,0 +1,27 @@
+package: alarm
+
+model: AlarmClock
+  # This is a multiline string terminated by a blank line.
+  doc:
+  Top level component for an alarm clock.
+  Generates the alarm at the approrate time.
+  Also displays the current time.
+
+  components:
+    Clock clock
+    Alarm alarm
+    # Allow unspecified types to support incremental modeling
+    controller
+
+  gherkin:
+    feature:
+      # This block is pure Gherkin syntax
+      Feature: The alarm should go off
+
+      Scenario: The alarm should go off when the time is set.
+      Given an alarm time of 7:00 AM CST is set
+      When the current time is 7:00 AM CST
+      Then the alarm should go off
+
+    # If the features get long, reference them from external files.
+    file: src/test/gherkin/my/other/file.feature

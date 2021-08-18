@@ -1,0 +1,16 @@
+# Define a structure for custom labels (ie, Affordability metadata in this case) like any other data type.
+package: affordability.extensions
+
+data: K8sRunMode
+  values:
+    never
+    always
+    sometimes
+
+data: Metadata
+  values:
+    K8sRunMode runsOnK8s
+    boolean requiresAdditionalTests 
+    string serviceName
+    string awsTag
+    markdown serviceDescription

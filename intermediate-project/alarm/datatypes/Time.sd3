@@ -1,0 +1,9 @@
+package: alarm.datatypes
+
+data: Time
+  doc: Represents time.
+  fields:
+    integer hour
+      doc: The hour in the day (0-23).  Fields can have documentation as well
+    integer minute
+    integer second
