@@ -1,5 +1,4 @@
 # This is not YAML.  It just looks like YAML...
-# Intends don't manner.  It parses fine without them.
 # Everything is a label (package:, data:, etc) with label specific content under it.
 
 package: alarm.datatypes
